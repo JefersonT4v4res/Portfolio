@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./_css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="./_css/form.css">
+    <script src="_javascript/funcoes.js"></script>
+    <script>
+        function calc_total() {
+            var qtd = parseInt(document.getElementById('cQtd').value);
+            total = qtd * 1500;
+            document.getElementById('cTotal').value = total;
+        }
+    </script>
+    <title>Tudo sobre Google Glass</title>
+</head>
+<body>
+
+    <div id="interface">
+
+        <header id="cabecalho">
+            <hgroup>
+                <h1>Google Glass</h1>
+                <h2>A revolução do Google está chegando</h2>
+            </hgroup>
+
+            <img id="icone" src="./_imagens/contato.png" />
+            <nav id="menu">
+                <h1>Menu Principal</h1>
+                <ul>
+                    <li onmousemove="mudaFoto('./_imagens/home.png')" onmouseout="mudaFoto('./_imagens/contato.png')"><a href="./index.html"> Home </a></li>
+                    <li onmousemove="mudaFoto('./_imagens/especificacoes.png')" onmouseout="mudaFoto('./_imagens/contato.png')"><a href="./specs.html"> Especificações</a></li>
+                    <li onmousemove="mudaFoto('./_imagens/fotos.png')" onmouseout="mudaFoto('./_imagens/contato.png')"><a href="./fotos.html">Foto</a></li>
+                    <li onmousemove="mudaFoto('./_imagens/multimidia.png')" onmouseout="mudaFoto('./_imagens/contato.png')"><a href="./contato.html">Multimídia</a></li>
+                    <li><a href="./fale-conosco.html">Fale conosco</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="corpo-full">
+            <article id="noticia-principal">
+                <header id="cabecalho-artigo">
+                    <hgroup>
+                        <h3>Fale Conosco > Contato</h3>
+                        <h1>Formulário de Contato</h1>
+                        <h2>por Gustavo Guanabara</h2>
+                        <h3 class="direita">Atualizado em 01/Maio/2013</h3>
+                    </hgroup>
+                </header>
+
+ <form method="POST" id="fContato" oninput="calc_total();">                 
+<fieldset id="usuario"><legend>Identificação do Usuário</legend>
+    <p><label for="cNome">Nome: </label> <input type="text" name="inpNome" id="cNome" maxlength="30" size="20" placeholder="Nome completo"/></p>
+    <p><label for="cSenha">Senha: </label> <input type="password" name="inpSenha" id="cSenha" placeholder="Senha" size="19" maxlength="20"></p>
+    <p><label for="cEmail">E-mail: </label> <input type="email" name="inpEmail" id="cEmail" size="30" maxlength="40" placeholder="Email"></p>
+    <p>Data de Nascimento: <input type="date" name="inpDate" id="cDate"/></p>
+    <fieldset id="sexo"><legend>Sexo:</legend>
+        <input type="radio" name="inpSexo" id="cMasc" /> <label for="cMasc">Masculino</label><br/>
+        <input type="radio" name="inpSexo" id="cFem" /> <label for="cFem">Feminino</label><br/>
+        <input type="radio" name="inpSexo" id="cOutro" /> <label for="cOutro">Outro</label></fieldset>
+</fieldset>
+
+<fieldset id="endereco"><legend>Endereço do Usuário</legend>
+    <p><label for="cRua">Logradouro: </label> <input type="text" name="inpRua" id="cRua" size="15" maxlength="80" placeholder="Rua"/></p>
+    <p><label for="cNum">Número: </label><input type="text" name="inpNum" id="cNum" maxlength="5" size="8" placeholder="Ex: 99"/></p>
+    <p><label for="cEst">Estado: </label>
+        <select name="slcEst" id="cEst">
+            <option value="null" selected>Selecione</option>
+            <optgroup label="Região Norte">
+                <option value="AC">Acre (AC)</option>
+                <option value="AP">Amapá (AP)</option>
+                <option value="AM">Amazonas (AM)</option>
+                <option value="PA">Pará (PA)</option>
+                <option value="RO">Rondônia (RO)</option>
+                <option value="RR">Roraima (RR)</option>
+                <option value="TO">Tocantins (TO)</option>
+            </optgroup>
+
+           <optgroup label="Região Nordeste">
+                <option value="AL">Alagoas (AL)</option>
+                <option value="BA">Bahia (BA)</option>
+                <option value="CE">Ceará (CE)</option>
+                <option value="MA">Maranhão (MA)</option>
+                <option value="PB">Paraíba (PB)</option>
+                <option value="PE">Pernambuco (PE)</option>
+                <option value="PI">Piauí (PI)</option>
+                <option value="RN">Rio Grande do Norte (RN)</option>
+                <option value="SE">Sergipe (SE)</option>
+           </optgroup>    
+            
+           <optgroup label="Região Centro-Oeste">
+                <option value="DF">Distrito Federal (DF)</option>
+                <option value="GO">Goiás (GO)</option>
+                <option value="MT">Mato Grosso (MT)</option>
+                <option value="MS">Mato Grosso do Sul (MS)</option>
+           </optgroup>
+
+           <optgroup label="Região Sudeste">
+                <option value="ES">Espírito Santo (ES)</option>
+                <option value="MG">Minas Gerais (MG)</option>
+                <option value="RJ">Rio de Janeiro (RJ)</option>
+                <option value="SP">São Paulo (SP)</option>
+           </optgroup>
+            
+            <optgroup label="Região Sul">
+                <option value="PR">Paraná (PR)</option>            
+                <option value="RS">Rio Grande do Sul (RS)</option>
+                <option value="SC">Santa Catarina (SC)</option>
+            </optgroup>
+      
+        </select></p>
+    <p><label for="cCid">Cidade: </label><input type="text" name="inpCid" id="cCid" maxlength="60" placeholder="Cidade" list="cidades"> </p>
+    <datalist id="cidades">
+        <option value="Rio de Janeiro"></option>
+        <option value="Nova Iguaçu"></option>
+        <option value="Niterói"></option>
+        <option value="Salvador"></option>
+        <option value="Santo Antônio de Jesus"></option>
+        <option value="Belford Roxo"></option>
+    </datalist>
+</fieldset>
+
+<fieldset id="mensagem"><legend>Mensagem do Usuário</legend>
+    <p><label for="cUrg">Grau de Urgência:</label>
+    Mín<input type="range" name="inoUrg" id="cUrg" min="0" max="10" step="2">Máx</p>
+
+    <p><label for="cMsg">Mensagem:</label>
+    <textarea name="txaMsg" id="cMsg" cols="45" rows="5" placeholder="Deixe aqui sua mensagem"></textarea></p>
+</fieldset>
+
+<fieldset id="pedido"><legend>Quero um Google Glass</legend>
+   <p> <input type="checkbox" name="inpPed" id="cPed" checked>
+       <label for="cPed">Gostaria de adquirir um Google Glass quando disponível.</label>
+    </p>
+   <p><label for="cCor">Cor: </label>
+    <input type="color" name="inpCor" id="cCor" value="#0000FF"/></p>
+    <p><label for="cQtd">Quantidade: </label>
+    <input type="number" name="inpQtd" id="cQtd" min="0" max="5" value="0"/></p>
+    <p><label for="cTotal">Preço Total: R$ </label>
+    <input type="text" name="inpTotal" id="cTotal" placeholder="Total a Pagar" readonly/></p>
+</fieldset>
+
+    <input type="image" name="inpEnviar" id="inpBtn" src="_imagens/botao-enviar.png"/>
+
+    </form>
+    </article>
+</section>  
+
+        <footer id="rodape">
+            <p><b>Copyright &copy; 2013 - by Gustavo Guanabara <br>
+                    <a href="https://www.facebook.com/Jeferson.tavares.58323431/" target="_blank">Facebook</a> | <a
+                        href="https://twitter.com/Jeferson_Lucaas" target="_blank">Twitter</a></b></p>
+        </footer>
+    </div>
+</body>
+
+</html>
