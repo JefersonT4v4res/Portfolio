@@ -137,7 +137,7 @@ public class Naham {
 			else imgAtual = runL[indiceRun];
 		}
 
-		// movimenta o poersonagem
+		// movimenta o personagem
 		posX = posX + velX;
 		posY = posY + velY;
 	}
