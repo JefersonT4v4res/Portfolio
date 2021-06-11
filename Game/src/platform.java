@@ -27,30 +27,26 @@ public class platform {
     }
 
     public void update(){   //Definindo movimento
-        posX += velX;   //Definindo movimento da plataforma.
-        floatPlat();   //Chamada da função de movimento.
-        colisao();    //Chamada da função de colisão.
+        floatPlat();    //Chamada da função de movimento.
+        colisao();     //Chamada da função de colisão.
+        posX += velX; //Definindo movimento da plataforma. 
     } 
 
 
     public void floatPlat() {
-
         if(posX <= 180){        //Testa posição 
 			velX *= -1;     //Redefine o movimento.
 		}else if(posX + 126 >= 904){    //Testa posição.
 			velX *= -1;              //Redefine o movimento.
-
 		}   //Essa função é responsável por fazer a plataforma se mover para os lados, indo e voltando.
 	}
 
     public void colisao(){  //Teste de colisão com a plataforma.
-        if(Naham.posX + Naham.width > (posX+40) && Naham.posX < (posX + 85)){
-            if(Naham.posY + Naham.heigth >= posY && Naham.posY + Naham.heigth <=  posY + 10){	
-                Naham.velY = 0;     //Reseta a velocidade Y para zero, parando a atuação da física enquanto o personagem está no chão.
-                Naham.posX += velX;  //Estabelece a mesma velocidade de movimento X para o personagem fazendo o personagem se mover junto 
-                                    //com a plataforma e evitando que ela se mova sozinha.
-                Naham.posY = 354;  //Redefinindo a posição Y do personagem
-                Naham.ESTADO = 'I'; // O estado do personagem recebe 'I'(Idle) para que a física deixe de ser aplicada.
+        if(Naham.posX + Naham.width >= (posX + 45 ) && Naham.posX <= (posX + 85)){
+            if(Naham.posY + Naham.heigth >= posY && Naham.posY + Naham.heigth <= posY + 10){	
+                Naham.velY = 0;
+                Naham.posX += velX; 
+                Naham.ESTADO = 'I'; 
             }		
         }
     }

@@ -47,6 +47,7 @@ public class Fase2 {
 			Game.ESTADO = 'G'; // Trocando o Estado do jogo.
 			Naham.posX = 12;  //    Redefinindo a 
 			Naham.posY = 352;// posição do personagem.
+			Sound.getInstance().yamete();
 		}
 		//colisão com o chão
 		if(Naham.posX + Naham.width > 0 && Naham.posX < (143)){

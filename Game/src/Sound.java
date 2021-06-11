@@ -1,4 +1,4 @@
-/*import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip; 
 import javax.sound.sampled.LineUnavailableException;
@@ -9,11 +9,13 @@ import java.io.IOException;
 public class Sound {
 
     public AudioInputStream silence;
-    public AudioInputStream opening;
+    public AudioInputStream yamete;
+    public AudioInputStream menu;
     public AudioInputStream caveAmbience;
     public AudioInputStream combatTheme;
     public Clip clipSilence;
-    public Clip clipOpening;
+    public Clip clipMenu;
+    public Clip clipYamete;
     public Clip clipCaveAmbience;
     public Clip clipCombatTheme;
     private static Sound singleton = null; 
@@ -32,22 +34,26 @@ public class Sound {
 
     public void carregarSons() { 
         try {
-            silence = AudioSystem.getAudioInputStream(getClass().getResource("C:/Users/cliente/Desktop/Tales_of_Kahf/Game/src/sons/silence.wav"));
-            opening = AudioSystem.getAudioInputStream(getClass().getResource("C:/Users/cliente/Desktop/Tales_of_Kahf/Game/src/src/sons/abertura.wav"));
-            caveAmbience = AudioSystem.getAudioInputStream(getClass().getResource("C:/Users/cliente/Desktop/Tales_of_Kahf/Game/src/src/sons/CaveAdventure.wav"));
-            combatTheme = AudioSystem.getAudioInputStream(getClass().getResource("C:/Users/cliente/Desktop/Tales_of_Kahf/Game/src/src/sons/confrontation.wav"));
+            silence = AudioSystem.getAudioInputStream(getClass().getResource("sons/silence.wav"));
+            menu = AudioSystem.getAudioInputStream(getClass().getResource("sons/ArabianNightes.wav"));
+            yamete = AudioSystem.getAudioInputStream(getClass().getResource("sons/yamete.wav"));
+            caveAmbience = AudioSystem.getAudioInputStream(getClass().getResource("sons/CaveAdventure.wav"));
+            combatTheme = AudioSystem.getAudioInputStream(getClass().getResource("sons/confrontation.wav"));
 
             clipSilence = AudioSystem.getClip();
-            clipOpening = AudioSystem.getClip();
+            clipMenu = AudioSystem.getClip();
+            clipYamete = AudioSystem.getClip();
             clipCaveAmbience = AudioSystem.getClip();
             clipCombatTheme = AudioSystem.getClip();
 
             clipSilence.open(silence);
-            clipOpening.open(opening); 
+            clipMenu.open(menu);
+            clipYamete.open(yamete); 
             clipCaveAmbience.open(caveAmbience); 
             clipCombatTheme.open(combatTheme); 
 
             clipSilence.start();
+            clipSilence.stop();
 
         } catch (UnsupportedAudioFileException e) { 
          e.printStackTrace(); 
@@ -58,15 +64,35 @@ public class Sound {
          } 
          } 
 
-         public void Menu(){
-            clipOpening.setFramePosition(0);
-            clipOpening.start(); 
+         public void init(){
+            clipSilence.setFramePosition(0);
+            clipSilence.start(); 
          }
 
-         public void CaveTheme(){
+         public void startMenu(){
+            clipMenu.setFramePosition(0);
+            clipMenu.start(); 
+         }
+
+         public void stopMenu(){
+            clipMenu.setFramePosition(0);
+            clipMenu.stop(); 
+         }
+
+         public void yamete(){
+            clipYamete.setFramePosition(0);
+            clipYamete.start(); 
+         }
+
+         public void startCaveTheme(){
             clipCaveAmbience.setFramePosition(0);
             clipCaveAmbience.start();
          }
+         public void stopCaveTheme(){
+            clipCaveAmbience.setFramePosition(0);
+            clipCaveAmbience.stop();
+         }
+
 
          public void CombatTheme(){
             clipCombatTheme.setFramePosition(0);
@@ -74,4 +100,3 @@ public class Sound {
          }
 
 }
-*/

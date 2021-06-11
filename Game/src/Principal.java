@@ -20,7 +20,6 @@ public class Principal {
 		janelaFrame.setVisible(true);
 		janelaFrame.pack();//faz com que a janela seja definido de acordo com o tamanho dos componentes dentro dela
 		
-		
 	}
 	
 	public static void main(String[] args) {

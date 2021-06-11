@@ -18,8 +18,9 @@ public class Game extends JPanel {
 	Fase2 fase2;
 	Fase3 fase3;
 	platform plat;
-	Inimigo mummy;
+	Inimigo boss;
 	Estados states;
+
 
 	static int cenario;	//Declarando a variável cenário como static para poder ser utlizada por outras classes com o valor atual da variável.
 	boolean k_enter = false;	//Declarando variáveis.
@@ -94,6 +95,8 @@ public class Game extends JPanel {
 		});
 		
 		//Instanciando variáveis
+		Sound.getInstance().init();
+		Sound.getInstance().startMenu();
 		ESTADO = 'S';
 		states = new Estados();
 		agendarTransicao(4000, 'M'); //Agendando transição entre estados. (Tempo / Estado)
@@ -101,11 +104,12 @@ public class Game extends JPanel {
 		heroi = new Naham();
 		fase1 = new Fase1();
 		fase2 = new Fase2();
-		fase3 = new Fase3();
 		plat = new platform();
-		
+		fase3 = new Fase3();
+		boss = new Inimigo();
+
 		setFocusable(true); //Esse painel tem a capacidade de receber foco
-		setLayout(null); // passando null estou dizendo que não vou organizar nada em layout, vou organizar tudo em pixel.
+		setLayout(null);   //passando null estou dizendo que não vou organizar nada em layout, vou organizar tudo em pixel.
 		
 		new Thread(new Runnable() { //Definindo uma Thread para execução do processo principal em um game, o gameloop.
 			@Override
@@ -133,20 +137,27 @@ public class Game extends JPanel {
 	
 	private void handlerEvents() {
 		if(ESTADO == 'E'){
-		heroi.handlerEvents(k_cima, k_esquerda, k_direita); //Passa para a classe heroi(Naham) as informações do teclado.
+			heroi.handlerEvents(k_cima, k_esquerda, k_direita); //Passa para a classe heroi(Naham) as informações do teclado.
 		}
 
 	}
 	
 	private void update() { //Atualiza o estado do jogo
 		states.update(); //chamada da função update da classe Estados para a definição da imagem referente ao estado do jogo.
+		
+		 if(ESTADO == 'G'){
+			Sound.getInstance().stopCaveTheme();
+		}
 
 		if(ESTADO == 'M' && k_enter == true){ //Definindo a funcionalidade para iniciar o jogo, saíndo do menu inicial para o Estado Executando do jogo.
 			ESTADO = 'E';
+			Sound.getInstance().stopMenu();
+			Sound.getInstance().startCaveTheme();
 		}else if(ESTADO == 'R' && k_enter == true){//Definindo a funcionalidade para voltar ao jogo, saíndo do Estado Reiniciando/Game over para o Estado Executando.
 			cenario = 1;
 			heroi.isRight = true;	
 			ESTADO = 'E';
+			Sound.getInstance().startCaveTheme();
 		}else  if(ESTADO == 'P' && k_escape == true){ //Definindo a funcionalidade para voltar ao jogo, saíndo do menu de pause para o Estado Executando do jogo.
 			ESTADO = 'E';
 		}
@@ -165,8 +176,7 @@ public class Game extends JPanel {
 
 		}else if(ESTADO == 'G'){
 				ESTADO = 'R';
-		}
-			
+		}		
 		
 	}
 	
@@ -211,7 +221,8 @@ public class Game extends JPanel {
 				fase2.render(g); //desenhando a segunda fase
 				plat.render(g); break; // plataforma da segunda fase
 			case 3:
-				fase3.render(g); break;	//desenhando a terceira fase
+				fase3.render(g);  //desenhando a terceira fase
+				boss.render(g); break;
 		}	
 				//desenhando Naham
 				heroi.render(g);
