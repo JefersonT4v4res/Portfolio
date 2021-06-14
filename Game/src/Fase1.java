@@ -49,7 +49,7 @@ public class Fase1{
 			Game.ESTADO = 'G'; // Trocando o Estado do jogo.
 			Naham.posX = 12;  //    Redefinindo a 
 			Naham.posY = 352;// posição do personagem.
-			Sound.getInstance().died();
+			Sound.getInstance().diedTheme();;
 		}
 		//colisão com o morrinho
 		if(Naham.posX + Naham.width >= (435+45) && Naham.posX < (435 + 80)){

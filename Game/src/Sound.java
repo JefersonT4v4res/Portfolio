@@ -36,21 +36,19 @@ public class Sound {
         try {
             silence = AudioSystem.getAudioInputStream(getClass().getResource("sons/silence.wav"));
             menu = AudioSystem.getAudioInputStream(getClass().getResource("sons/ArabianNightes.wav"));
-            died = AudioSystem.getAudioInputStream(getClass().getResource("sons/diedEffectsound.wav"));
+            died = AudioSystem.getAudioInputStream(getClass().getResource("sons/diedEffectSound.wav"));
             caveAmbience = AudioSystem.getAudioInputStream(getClass().getResource("sons/CaveAdventure.wav"));
-            combatTheme = AudioSystem.getAudioInputStream(getClass().getResource("sons/confrontation.wav"));
 
             clipSilence = AudioSystem.getClip();
             clipMenu = AudioSystem.getClip();
             clipDied = AudioSystem.getClip();
             clipCaveAmbience = AudioSystem.getClip();
-            clipCombatTheme = AudioSystem.getClip();
 
             clipSilence.open(silence);
             clipMenu.open(menu);
             clipDied.open(died); 
             clipCaveAmbience.open(caveAmbience); 
-            clipCombatTheme.open(combatTheme); 
+
 
             clipSilence.start();
             clipSilence.stop();
@@ -79,7 +77,7 @@ public class Sound {
             clipMenu.stop(); 
          }
 
-         public void died(){
+         public void diedTheme(){
             clipDied.setFramePosition(0);
             clipDied.start(); 
          }
@@ -91,12 +89,6 @@ public class Sound {
          public void stopCaveTheme(){
             clipCaveAmbience.setFramePosition(0);
             clipCaveAmbience.stop();
-         }
-
-
-         public void CombatTheme(){
-            clipCombatTheme.setFramePosition(0);
-            clipCombatTheme.start();
          }
 
 }
