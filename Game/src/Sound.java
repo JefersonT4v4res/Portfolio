@@ -9,13 +9,13 @@ import java.io.IOException;
 public class Sound {
 
     public AudioInputStream silence;
-    public AudioInputStream yamete;
+    public AudioInputStream died;
     public AudioInputStream menu;
     public AudioInputStream caveAmbience;
     public AudioInputStream combatTheme;
     public Clip clipSilence;
     public Clip clipMenu;
-    public Clip clipYamete;
+    public Clip clipDied;
     public Clip clipCaveAmbience;
     public Clip clipCombatTheme;
     private static Sound singleton = null; 
@@ -36,19 +36,19 @@ public class Sound {
         try {
             silence = AudioSystem.getAudioInputStream(getClass().getResource("sons/silence.wav"));
             menu = AudioSystem.getAudioInputStream(getClass().getResource("sons/ArabianNightes.wav"));
-            yamete = AudioSystem.getAudioInputStream(getClass().getResource("sons/yamete.wav"));
+            died = AudioSystem.getAudioInputStream(getClass().getResource("sons/diedEffectsound.wav"));
             caveAmbience = AudioSystem.getAudioInputStream(getClass().getResource("sons/CaveAdventure.wav"));
             combatTheme = AudioSystem.getAudioInputStream(getClass().getResource("sons/confrontation.wav"));
 
             clipSilence = AudioSystem.getClip();
             clipMenu = AudioSystem.getClip();
-            clipYamete = AudioSystem.getClip();
+            clipDied = AudioSystem.getClip();
             clipCaveAmbience = AudioSystem.getClip();
             clipCombatTheme = AudioSystem.getClip();
 
             clipSilence.open(silence);
             clipMenu.open(menu);
-            clipYamete.open(yamete); 
+            clipDied.open(died); 
             clipCaveAmbience.open(caveAmbience); 
             clipCombatTheme.open(combatTheme); 
 
@@ -79,9 +79,9 @@ public class Sound {
             clipMenu.stop(); 
          }
 
-         public void yamete(){
-            clipYamete.setFramePosition(0);
-            clipYamete.start(); 
+         public void died(){
+            clipDied.setFramePosition(0);
+            clipDied.start(); 
          }
 
          public void startCaveTheme(){
