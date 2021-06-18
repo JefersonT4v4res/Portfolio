@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@1,700&family=Caveat:wght@700&family=DotGothic16&family=Russo+One&display=swap'); /*ola*/
 @import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@1,700&family=Caveat:wght@700&family=DotGothic16&family=Josefin+Sans:wght@300&family=Open+Sans+Condensed:wght@300&family=Russo+One&display=swap'); /*subOla*/
 @import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap'); /*SobreMimNome*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 
 body {
     background-color: #dce3ed;
@@ -260,7 +261,7 @@ article#habilidades p {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 13pt;
 }
-
+/*--------------FRASE----------------------------*/
 .container {
     margin-top: 10px;
     border: 1px solid black;
@@ -270,9 +271,8 @@ article#habilidades p {
 }
 
 /*--------------SOBRE MIM----------------------------*/
-
-div.container #box{
-    background-color: #000000a6;
+section#about{
+    margin-bottom: 34.2%;
 }
 
 div#infoEsq {
@@ -363,4 +363,45 @@ div#infoDir {
     width: 75%;
     display: block;
     float: right;
+}
+
+div#aboutMe {
+    height: 20%;
+    width: 80%;
+    margin: auto;
+}
+
+div#aboutMe p{
+    font-family: Helvetica, sans-serif ;
+    padding-top: 25%;
+    padding-left: 20%;
+    font-size: 14pt;
+    text-align: center;
+    color: #ffffff;
+}
+
+div#image {
+    margin-right: 67%;
+    margin-top: 2.2%;
+}
+
+footer#footer {
+    background-color: #333f4f;
+    color: lightgray;
+    padding: 10px 10%;
+    display: flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-media {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.socialIcon {
+    max-width: 40px;
+    max-height: 40px;
+    padding: 5px;
 }
