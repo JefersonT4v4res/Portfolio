@@ -6,8 +6,8 @@ import javax.swing.JPanel;
 
 
 public class Principal {
-    public static final int LARGURA_TELA = 500; //Definimos o valores da dimensão da janela.
-	public static final int ALTURA_TELA = 600;
+    public static final int LARGURA_TELA = 1000; //Definimos o valores da dimensão da janela.
+	public static final int ALTURA_TELA = 300;
 
     public Principal(){
         JFrame janelaFrame = new JFrame("SpaceRace");

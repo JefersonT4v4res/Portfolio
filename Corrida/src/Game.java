@@ -11,16 +11,21 @@ import javax.swing.JPanel;
 public class Game extends JPanel {
 
     Player p;
+    faseOne fOne;
+    shot s;
 
     boolean k_up = false;
     boolean k_down = false;
     boolean k_left = false;
     boolean k_right = false;
     boolean k_shift = false;
+    boolean k_shot = false;
 
     public Game() {
 
         p = new Player();
+        fOne = new faseOne();
+        s = new shot();
 
         setFocusable(true);
         setLayout(null);
@@ -44,6 +49,8 @@ public class Game extends JPanel {
                         k_left = true; break;
                     case KeyEvent.VK_SHIFT:
                         k_shift = true; break;
+                    case KeyEvent.VK_K: 
+                        k_shot = true; break;
                 }
 
             }
@@ -60,7 +67,9 @@ public class Game extends JPanel {
                     case KeyEvent.VK_A:
                         k_left = false; break;
                     case KeyEvent.VK_SHIFT:
-                        k_shift = false; break;    
+                        k_shift = false; break;
+                    case KeyEvent.VK_K: 
+                        k_shot = false; break;   
                 }
             }
 
@@ -91,10 +100,14 @@ public class Game extends JPanel {
 
     private void handleEvent() {
         p.handleEvent(k_up, k_down, k_left, k_right, k_shift);
+        fOne.handleEvent(k_left, k_right);
+        s.handleEvent(k_shot);
     }
 
     private void update() {
         p.update();
+        fOne.update();
+        s.update(k_shot);
     }
 
     private void render() {
@@ -107,8 +120,11 @@ public class Game extends JPanel {
         Graphics2D g = (Graphics2D) g2.create();
 
         setBackground(Color.BLACK);
-
+        
+        fOne.render(g);
+        s.render(g);
         p.render(g);
+
     }
 
 }
