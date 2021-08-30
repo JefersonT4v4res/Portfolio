@@ -1,10 +1,10 @@
 # Projetos
 Aqui estão alguns projetos desenvolvidos por mim como forma de me desafiar e até mesmo projetos que eu estava inspirado em tirar do papel.
 
-<img src="exemplo-image.png" alt="Exemplo imagem jogo corrida">
+<img src="SpaceRace.jpg" alt="Exemplo imagem jogo corrida">
 > Segundo game/projeto que estou desenvolvendo para aparfeiçoar minhas habilidades. 
 
-<img src="exemplo-image.png" alt="Site Portfólio imagem">
+<img src="SitePortfolio.png" alt="Site Portfólio imagem">
 > Projetos feito em HTML e CSS para portfólio Front-end.
 
 <img src="TalesOfKahf.jpg" alt="Capa do jogo">
