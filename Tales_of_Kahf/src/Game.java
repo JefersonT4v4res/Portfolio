@@ -18,7 +18,7 @@ public class Game extends JPanel {
 	Fase2 fase2;
 	Fase3 fase3;
 	platform plat;
-	Inimigo boss;
+	Inimigo mankey;
 	Estados states;
 
 
@@ -28,6 +28,7 @@ public class Game extends JPanel {
 	boolean k_cima = false;
 	boolean k_esquerda = false;
 	boolean k_direita = false;
+	boolean k_ataque = false;
 
 	public static char ESTADO; // (S)Splash, (M)StartMenu, (E)Executando, (P)Pausado,
 							  // (G)Game Over, (R)Reiniciando.
@@ -49,6 +50,8 @@ public class Game extends JPanel {
 						k_esquerda = false; break;
 					case KeyEvent.VK_D: // tecla para direita.
 						k_direita = false; break;
+					case KeyEvent.VK_K: // tecla para direita.
+						k_ataque = false; break;
 					case KeyEvent.VK_ENTER: // tecla enter.
 						k_enter = false; break;
 					case KeyEvent.VK_ESCAPE: // tecla escape.
@@ -80,6 +83,8 @@ public class Game extends JPanel {
 						k_esquerda = true; break;
 					case KeyEvent.VK_D: // tecla para direita.
 						k_direita = true; break;
+					case KeyEvent.VK_K: // tecla para direita.
+						k_ataque = true; break;
 					case KeyEvent.VK_ESCAPE: // tecla escape.
 						ESTADO = 'P'; break;	
 					
@@ -100,13 +105,13 @@ public class Game extends JPanel {
 		ESTADO = 'S';
 		states = new Estados();
 		agendarTransicao(4000, 'M'); //Agendando transição entre estados. (Tempo / Estado)
-		cenario = 1;
+		cenario = 3;
 		heroi = new Naham();
 		fase1 = new Fase1();
 		fase2 = new Fase2();
 		plat = new platform();
 		fase3 = new Fase3();
-		boss = new Inimigo();
+		mankey = new Inimigo();
 
 		setFocusable(true); //Esse painel tem a capacidade de receber foco
 		setLayout(null);   //passando null estou dizendo que não vou organizar nada em layout, vou organizar tudo em pixel.
@@ -137,7 +142,8 @@ public class Game extends JPanel {
 	
 	private void handlerEvents() {
 		if(ESTADO == 'E'){
-			heroi.handlerEvents(k_cima, k_esquerda, k_direita); //Passa para a classe heroi(Naham) as informações do teclado.
+			heroi.handlerEvents(k_cima, k_esquerda, k_direita, k_ataque); //Passa para a classe heroi(Naham) as informações do teclado.
+			mankey.handlerEvents();
 		}
 
 	}
@@ -145,7 +151,7 @@ public class Game extends JPanel {
 	private void update() { //Atualiza o estado do jogo
 		states.update(); //chamada da função update da classe Estados para a definição da imagem referente ao estado do jogo.
 		
-		 if(ESTADO == 'G'){
+		 if(ESTADO == 'G' || ESTADO == 'P'){
 			Sound.getInstance().stopCaveTheme();
 		}
 
@@ -165,14 +171,16 @@ public class Game extends JPanel {
 		if(ESTADO == 'E'){ //Definição do que fazer durante o Estado Executando.
 			heroi.update();//Chamada da atualização do estado do personagem
 			//Definição dos cenários
-		if(cenario == 1){
-			fase1.update();
-		}else if(cenario == 2){
-			fase2.update();
-			plat.update();
-		}else if(cenario == 3){
-			fase3.update();
-		}
+			switch(cenario){
+				case 1:
+				fase1.update(); break;  //desenhando a primeira fase
+				case 2:
+				fase2.update();
+				plat.update(); break; // plataforma da segunda fase
+				case 3:
+				fase3.update();  //desenhando a terceira fase
+				mankey.update(); break;
+		  }	
 
 		}else if(ESTADO == 'G'){
 				ESTADO = 'R';
@@ -222,7 +230,7 @@ public class Game extends JPanel {
 				plat.render(g); break; // plataforma da segunda fase
 			case 3:
 				fase3.render(g);  //desenhando a terceira fase
-				boss.render(g); break;
+				mankey.render(g); break;
 		}	
 				//desenhando Naham
 				heroi.render(g);

@@ -12,12 +12,15 @@ public class Naham {
 	private BufferedImage runR[];
 	private BufferedImage jumpL[];
 	private BufferedImage jumpR[];
+	private BufferedImage atackR[];
+	private BufferedImage atackL[];
 	private BufferedImage imgAtual;
-	public static char ESTADO; // J = jum, R = run, S = stoped, I = idle
+	public static char ESTADO; // J = jum, R = run, S = stoped, I = idle, A = Atack
 	public boolean isRight; // true = right, false = left
 	private int timer;
 	private int indiceJump;
 	private int indiceRun;
+	private int indiceAtck;
 	public static double posY;
 	public static double posX;
 	public static double velY;
@@ -26,7 +29,7 @@ public class Naham {
 	public static double width;
 
 	public Naham() {
-		posY = 352;
+		posY = 353;
 		posX = 12;
 		velY = 0;
 		velX = 0;
@@ -35,6 +38,7 @@ public class Naham {
 		ESTADO = 'I'; // a princípio, o personagem está parado
 		indiceJump = 0;
 		indiceRun = 0;
+		indiceAtck = 0;
 		timer = 0;
 		isRight = true; // a princípio o personagem aponta para a direita
 
@@ -55,13 +59,19 @@ public class Naham {
 				jumpL[i] = ImageIO.read(getClass().getResource("imgs/sprites/NahamJumpingLeft" + (i + 1) + ".png"));
 				jumpR[i] = ImageIO.read(getClass().getResource("imgs/sprites/NahamJumpingRight" + (i + 1) + ".png"));
 			}
+			atackR = new BufferedImage[3];
+			atackL = new BufferedImage[3];
+			for (int i = 0; i < 3; i++) {
+				atackR[i] = ImageIO.read(getClass().getResource("imgs/sprites/NahamAttackRight" + (i + 1) + ".png"));
+				atackL[i] = ImageIO.read(getClass().getResource("imgs/sprites/NahamAtackLeft" + (i + 1) + ".png"));
+			}
 			imgAtual = stopR; // a primieira imagem é o personagem parado e apontando para a direita
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void handlerEvents(boolean k_cima, boolean k_esquerda, boolean k_direita) {
+	public void handlerEvents(boolean k_cima, boolean k_esquerda, boolean k_direita, boolean k_ataque) {
 
 		if (ESTADO == 'J') { // se o personagem estiver pulando
 			if (k_direita == true) {
@@ -102,6 +112,15 @@ public class Naham {
 				else
 					imgAtual = jumpL[indiceJump];
 			}
+
+			// diparador do atatque do personagem
+			if (k_ataque == true) { // se pressionou para cima e
+				ESTADO = 'A';
+				if (isRight)
+					imgAtual = atackR[indiceAtck];
+				else
+					imgAtual = atackL[indiceAtck];
+			}
 		}
 	}
 
@@ -135,9 +154,22 @@ public class Naham {
 			// atualiza o frame do personagem correndo
 			if(isRight) imgAtual = runR[indiceRun];
 			else imgAtual = runL[indiceRun];
-		}
 
-		// movimenta o personagem
+		}else if (ESTADO == 'A') { // se o personagem está pulando
+
+			// atualiza o índice da animação de pulo
+			if (timer >= 4) { // quanto maior o valor menor a velocidade da troca de quadros
+				timer = 0; // reinicializa o timer
+				indiceAtck++;// incrementwa o índice do frame
+				if (indiceAtck == 3)
+				indiceAtck = 0; // correção de limite (reinicialização da animação)
+			}
+
+			// atualiza o frame de pulo
+			if(isRight) imgAtual = atackR[indiceAtck];
+			else imgAtual = atackL[indiceAtck];
+		}
+		// movimenta o poersonagem
 		posX = posX + velX;
 		posY = posY + velY;
 	}
